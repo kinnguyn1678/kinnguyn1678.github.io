@@ -1,0 +1,11 @@
+# Thư mục và tệp lớn không nên được đưa lên Git
+/videos/
+/assets/images/large/
+
+# Các loại tệp nhị phân lớn
+*.zip
+*.rar
+*.mp4
+*.psd
+*.mov
+*.mp3
