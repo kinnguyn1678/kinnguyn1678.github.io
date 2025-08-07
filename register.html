@@ -7,53 +7,95 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
         <link href="css/styles.css" rel="stylesheet" />
         <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
         <style>
             body {
-                background: url('https://images.unsplash.com/photo-1600269452121-4f2416e55c1c?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center fixed;
-                background-size: cover;
-                position: relative;
-            }
-            body::before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background-color: rgba(0, 0, 0, 0.5); /* Lớp phủ đen mờ */
+                background-color: #f8f9fa; /* Nền xám nhạt */
             }
             .form-container {
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                min-height: 100vh;
-                position: relative;
-                z-index: 1;
+                min-height: calc(100vh - 100px); /* Điều chỉnh chiều cao để phù hợp với navbar và footer */
+                padding: 3rem 0; /* Thêm padding trên và dưới */
             }
             .stylish-card {
-                background-color: rgba(255, 255, 255, 0.9);
+                background-color: #fff;
+                border: 1px solid #dee2e6;
                 border-radius: 15px;
-                box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+                box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.1);
             }
         </style>
     </head>
     <body>
-        <div class="form-container">
-            <div class="card stylish-card p-5" data-aos="fade-down" data-aos-duration="1000" style="max-width: 450px;">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" data-aos="fade-down" data-aos-duration="1000">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" href="index.html">
+                    <img src="Logo_NIKE.svg" alt="Logo" width="30" height="30" class="d-inline-block align-top me-2">
+                    NIKE
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="register.html">Register</a></li>
+                        <li class="nav-item"><a class="nav-link" href="profile.html">Profile</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="#!">All Products</a></li>
+                                <li><hr class="dropdown-divider" /></li>
+                                <li><a class="dropdown-item" href="#!">Popular Items</a></li>
+                                <li><a class="dropdown-item" href="#!">New Arrivals</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <form class="d-flex me-2">
+                        <div class="input-group input-group-sm">
+                            <input id="search-input" class="form-control bg-transparent border-0 border-bottom text-dark" type="search" placeholder="Tìm kiếm..." aria-label="Search">
+                            <button class="btn btn-link text-white" type="submit" style="padding: 0.25rem 0.5rem;">
+                                <i class="bi-search fs-5" style="color: #333;"></i>
+                            </button>
+                        </div>
+                    </form>
+                    
+                    <form class="d-flex">
+                        <a href="cart.html" class="btn btn-outline-dark">
+                            <i class="bi-cart-fill me-1"></i>
+                            Cart
+                            <span class="badge bg-dark text-white ms-1 rounded-pill" id="cart-count">0</span>
+                        </a>
+                    </form>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="form-container" data-aos="fade-up" data-aos-duration="1000">
+            <div class="card stylish-card p-5" style="max-width: 450px;">
                 <h2 class="text-center fw-bold mb-2">Đăng ký thành viên</h2>
                 <p class="text-center text-muted mb-4">Tạo tài khoản để khám phá bộ sưu tập</p>
-                <form>
+                <form id="registerForm" novalidate>
                     <div class="mb-3">
                         <label for="name" class="form-label">Họ và tên</label>
                         <input type="text" class="form-control" id="name" required>
+                        <div class="invalid-feedback">Họ và tên không được để trống.</div>
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
                         <input type="email" class="form-control" id="email" required>
+                        <div class="invalid-feedback">Email không đúng định dạng.</div>
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">Mật khẩu</label>
                         <input type="password" class="form-control" id="password" required>
+                        <div class="invalid-feedback">Mật khẩu không được để trống.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="confirmPassword" class="form-label">Xác nhận Mật khẩu</label>
+                        <input type="password" class="form-control" id="confirmPassword" required>
+                        <div class="invalid-feedback" id="confirmPasswordError">Mật khẩu xác nhận không khớp.</div>
                     </div>
                     <div class="d-grid gap-2 mt-4">
                         <button type="submit" class="btn btn-dark btn-lg">Đăng ký</button>
@@ -62,9 +104,119 @@
                 <p class="mt-3 text-center">Đã có tài khoản? <a href="login.html">Đăng nhập</a></p>
             </div>
         </div>
+        
+        <footer class="bg-dark text-white pt-5 pb-4">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-6 mb-4">
+                        <h6 class="fw-bold text-uppercase mb-3">Resources</h6>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><a href="#" class="text-white text-decoration-none">Find A Store</a></li>
+                            <li class="mb-2"><a href="#" class="text-white text-decoration-none">Become A Member</a></li>
+                            <li class="mb-2"><a href="#" class="text-white text-decoration-none">Running Shoe Finder</a></li>
+                            <li class="mb-2"><a href="#" class="text-white text-decoration-none">Send Us Feedback</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3 col-6 mb-4">
+                        <h6 class="fw-bold text-uppercase mb-3">Help</h6>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><a href="#" class="text-white text-decoration-none">Get Help</a></li>
+                            <li class="mb-2"><a href="#" class="text-white text-decoration-none">Order Status</a></li>
+                            <li class="mb-2"><a href="#" class="text-white text-decoration-none">Delivery</a></li>
+                            <li class="mb-2"><a href="#" class="text-white text-decoration-none">Returns</a></li>
+                            <li class="mb-2"><a href="#" class="text-white text-decoration-none">Payment Options</a></li>
+                            <li class="mb-2"><a href="#" class="text-white text-decoration-none">Contact Us</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3 col-6 mb-4">
+                        <h6 class="fw-bold text-uppercase mb-3">Company</h6>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><a href="#" class="text-white text-decoration-none">About Nike</a></li>
+                            <li class="mb-2"><a href="#" class="text-white text-decoration-none">News</a></li>
+                            <li class="mb-2"><a href="#" class="text-white text-decoration-none">Careers</a></li>
+                            <li class="mb-2"><a href="#" class="text-white text-decoration-none">Investors</a></li>
+                            <li class="mb-2"><a href="#" class="text-white text-decoration-none">Sustainability</a></li>
+                            <li class="mb-2"><a href="#" class="text-white text-decoration-none">Impact</a></li>
+                            <a href="#" class="text-white text-decoration-none d-block mb-1">Report a Concern</a>
+                        </ul>
+                    </div>
+                    <div class="col-md-3 col-6 mb-4">
+                        <h6 class="fw-bold text-uppercase mb-3">Vietnam</h6>
+                        <a href="#" class="text-white text-decoration-none d-block mb-1">Guides</a>
+                        <a href="#" class="text-white text-decoration-none d-block mb-1">Terms of Sale</a>
+                        <a href="#" class="text-white text-decoration-none d-block mb-1">Terms of Use</a>
+                        <a href="#" class="text-white text-decoration-none d-block mb-1">Nike Privacy Policy</a>
+                        <a href="#" class="text-white text-decoration-none d-block mb-1">Privacy Settings</a>
+                        <p class="mb-2">© 2025 Nike, Inc. All rights reserved</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
         <script>
-            AOS.init();
+            document.addEventListener('DOMContentLoaded', function() {
+                AOS.init();
+                const registerForm = document.getElementById('registerForm');
+                registerForm.addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    
+                    const name = document.getElementById('name');
+                    const email = document.getElementById('email');
+                    const password = document.getElementById('password');
+                    const confirmPassword = document.getElementById('confirmPassword');
+                    
+                    // Reset validation states
+                    name.classList.remove('is-invalid');
+                    email.classList.remove('is-invalid');
+                    password.classList.remove('is-invalid');
+                    confirmPassword.classList.remove('is-invalid');
+
+                    let isValid = true;
+
+                    // Kiểm tra trường Họ và tên
+                    if (!name.value) {
+                        name.classList.add('is-invalid');
+                        name.nextElementSibling.textContent = 'Họ và tên không được để trống.';
+                        isValid = false;
+                    }
+
+                    // Kiểm tra Email
+                    if (!email.value) {
+                        email.classList.add('is-invalid');
+                        email.nextElementSibling.textContent = 'Email không được để trống.';
+                        isValid = false;
+                    } else {
+                        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                        if (!emailRegex.test(email.value)) {
+                            email.classList.add('is-invalid');
+                            email.nextElementSibling.textContent = 'Email không đúng định dạng.';
+                            isValid = false;
+                        }
+                    }
+
+                    // Kiểm tra Mật khẩu
+                    if (!password.value) {
+                        password.classList.add('is-invalid');
+                        password.nextElementSibling.textContent = 'Mật khẩu không được để trống.';
+                        isValid = false;
+                    }
+                    
+                    // Kiểm tra Xác nhận Mật khẩu
+                    if (password.value !== confirmPassword.value) {
+                        confirmPassword.classList.add('is-invalid');
+                        document.getElementById('confirmPasswordError').textContent = 'Mật khẩu xác nhận không khớp.';
+                        isValid = false;
+                    }
+
+                    // Nếu tất cả hợp lệ
+                    if (isValid) {
+                        alert('Đăng ký thành công! Bạn sẽ được chuyển đến trang đăng nhập.');
+                        window.location.href = "login.html";
+                    }
+                });
+            });
         </script>
     </body>
 </html>
